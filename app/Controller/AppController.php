@@ -36,3 +36,23 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'BootstrapPaginator'),
 		);
 }
+public function beforeRender(){
+	if(isset($this->request->params['prefix'])){
+
+if($this->request->params['prefix']=='admin') $this->layout='default';
+if($this->request->params['prefix']=='ajax') $this->layout='ajax';
+$this->set('user',array('id'=>1,'nome'=>'Erik'));
+$this->set('active','home');
+
+}else{
+
+$this->theme=Configure::read('theme');
+
+}
+
+if($this->request->is('ajax')){
+
+$this->layout='ajax';
+
+}
+}
