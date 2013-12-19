@@ -22,11 +22,11 @@ class Pagina extends AppModel{
         	//verifica se o título foi enviado
 		if(isset($this->data['Pagina']['titulo'])){
             	//e seta o title igual, caso  esteja vazio
-			if (!isset($this->data['Pagina']['title'])||emptyempty($this->data['Pagina']['title']))
+			if (!isset($this->data['Pagina']['title'])|| empty($this->data['Pagina']['title']))
 				$this->data['Pagina']['title']=$this->data['Pagina']['titulo'];
 
            		 //caso o slug esteja veio usa o titulo
-			if (!isset($this->data['Pagina']['slug'])||emptyempty($this->data['Pagina']['slug'])){
+			if (!isset($this->data['Pagina']['slug'])|| empty($this->data['Pagina']['slug'])){
                		 //e usa o inflector pra fazer o slug com traço, troque o '-' por underline se qusier.
 				$this->data['Pagina']['slug']=Inflector::slug(strtolower($this->data['Pagina']['titulo']),'-');
 			}else{
