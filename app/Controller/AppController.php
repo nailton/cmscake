@@ -62,34 +62,46 @@ class AppController extends Controller {
 	}
 
 	public function beforeRender(){
+
 		if(isset($this->request->params['prefix'])){
 
 			if($this->request->params['prefix']=='admin') $this->layout='default';
+
 			if($this->request->params['prefix']=='ajax') $this->layout='ajax';
+
 			$this->set('user',$this->Auth->User());
 			$this->set('active','home');
 
 		}else{
-
-			$this->theme=Configure::read('theme');
-			if($this->Auth->User()){
-				$configs['titulo']=$this->Auth->User('titulo');
-			}else{
-				$this->loadModel('Usuario');
-				$user=$this->Usuario->find('first',array(
-					'conditions'=>array('id'=>1),
-					'fields'=>array('titulo')
-					));
-				$configs['titulo']=$user['Usuario']['titulo'];
+			$configs['titulo'] = 'Instalando CMS';
+			$this->set('user',false);
+			App::uses('SchemaInstallShell', 'Instala.Console/Command');
+			$this->My = new SchemaInstallShell();
+			$this->My->startup();
+			$db = ConnectionManager::getDataSource('default');
+			$db = $db->listSources();
+			$tables = array_diff($this->My->checkInstalacao(),$db);
+			if(empty($tables)){
+				if($this->Auth->User()){
+					$configs['titulo']=$this->Auth->User('titulo');
+					$this->theme=Configure::read('theme');
+				}else{
+					$this->loadModel('Usuario');
+					$user=$this->Usuario->find('first',array(
+						'conditions'=>array('id'=>1),
+						'fields'=>array('titulo')
+						));
+					if(!empty($user)){
+						$configs['titulo']=$user['Usuario']['titulo'];
+						$this->theme=Configure::read('theme');
+					}
+				}
 			}
 			$this->set('configs',$configs);
-
 		}
 
 		if($this->request->is('ajax')){
-
 			$this->layout='ajax';
-
 		}
 	}
 }

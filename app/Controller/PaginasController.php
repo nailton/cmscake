@@ -19,7 +19,7 @@ class PaginasController extends AppController {
 
     //mostra as páginas do site
 	function display($slug=null){
-		$conteudo=$this->Pagina->find('first',array('conditions'=>array('slug'=>$slug),'fields'=>array('title','descricao','tags','slug','corpo')));
+		$conteudo=$this->Pagina->find('first',array('conditions'=>array('slug'=>$slug),'fields'=>array('titulo','title','descricao','tags','slug','corpo')));
 		if(count($conteudo)==0)throw new NotFoundException(__('Ops! Página não encontrada'));
 		$conteudo = $conteudo['Pagina'];
 		$seo['title']=$conteudo['title'];

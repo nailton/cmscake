@@ -38,8 +38,7 @@ Router::connect('/admin', array('prefix'=>'admin','controller' => 'Painel', 'act
  * how to customize the loading of plugin routes.
  */
 CakePlugin::routes();
-Router::connect('/:slug', array('controller' => 'paginas ', 'action' => 'display'));
-
+Router::connect('/:slug', array('controller' => 'paginas ', 'action' => 'display'),array('pass'=>array('slug')));
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
