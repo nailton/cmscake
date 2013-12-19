@@ -10,7 +10,7 @@ class SchemaInstallShell extends SchemaShell {
 		list($Schema, $table) = $this->_loadSchema();
 		$this->_instala($Schema, $table);
 	}
-
+	
 	protected function _instala(CakeSchema $Schema, $table = null) {
 		$db = ConnectionManager::getDataSource($this->Schema->connection);
 
@@ -28,9 +28,9 @@ class SchemaInstallShell extends SchemaShell {
 		}
 
 		$this->_run($create, 'create', $Schema);
-
+		
 	}
-
+	
 	public function checkInstalacao() {
 		$options['models']=false;
 		list($Schema, $table) = $this->_loadSchema();

@@ -2,7 +2,7 @@
 
 class InstalaController extends InstalaAppController {
 	public $name = 'Instala';
-
+	
 	public function index() {
 		App::uses('SchemaInstallShell', 'Instala.Console/Command');
 		$this->My = new SchemaInstallShell();
@@ -14,11 +14,24 @@ class InstalaController extends InstalaAppController {
 			return($this->redirect(array('action'=>'cadAdmin')));
 		}
 	}
-
+	
 	public function bancodedados(){
-
+		
 			App::uses('SchemaInstallShell', 'Instala.Console/Command');
 			$this->My = new SchemaInstallShell();
+			
+			$file='schema';
+			$underscore='';
+			$snapshot='';
+			$i=0;
+			while(file_exists(APP.'Config'.DS.'Schema'.DS.$file.$underscore.$snapshot.'.php')){
+				$underscore='_';
+				$i++;
+				$snapshot=$i;
+			}
+			$snapshot=$snapshot-1;
+			$this->My->params['snapshot']=$snapshot;
+			
 			$this->My->startup();
 			$db = ConnectionManager::getDataSource('default');
 			$db = $db->listSources();
@@ -29,7 +42,7 @@ class InstalaController extends InstalaAppController {
 				return($this->redirect(array('action'=>'cadAdmin')));
 			}
 	}
-
+	
 	public function cadAdmin(){
 		$this->loadModel('Usuario');
 		if($this->Usuario->find('count')>0)throw new ForbiddenException(__('Ops! você não pode fazer isso'));
