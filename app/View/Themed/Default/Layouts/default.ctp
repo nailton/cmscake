@@ -1,1 +1,1 @@
-//app/View/Themed/Default/Layouts/default.ctp
+<?php echo $this->fetch('content'); ?>

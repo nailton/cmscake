@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>CMS Tutorial – Total Interativa</title>
+	<title>CMS Tutorial – Teste CMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<?php
@@ -21,7 +21,7 @@
 	<header id="header">
 		<div class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-inner container-fluid">
-			<?php echo $this->Html->link('CMS com Cake – Total Interativa','/admin',array('class'=>'brand'));?>
+			<?php echo $this->Html->link('CMS com Cake – Teste CMS','/admin',array('class'=>'brand'));?>
 				<?php echo $this->element('admin/header');?>
 			</div>
 			<?php echo $this->element('admin/menu');?>

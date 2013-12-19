@@ -36,13 +36,36 @@ class AppController extends Controller {
 		'Paginator' => array('className' => 'BootstrapPaginator'),
 		);
 
+	public $components = array(
+		'Session',
+		'Cookie',
+		'Auth' => array(
+			'loginAction'=>array(
+				'admin'=>true,
+				'controller'=>'Usuarios',
+				'action'=>'login'
+				),
+			'authenticate'=>array(
+				'Blowfish'=>array(
+					'userModel' => 'Usuario',
+					)
+				),
+			'loginRedirect' => '\admin',
+			'logoutRedirect' => '\admin'
+			),
+		);
+
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow(array('display','menu'));
+	}
+
 	public function beforeRender(){
 		if(isset($this->request->params['prefix'])){
 
 			if($this->request->params['prefix']=='admin') $this->layout='default';
 			if($this->request->params['prefix']=='ajax') $this->layout='ajax';
-			// TESTE
-			$this->set('user',array('id'=>1,'nome'=>'Nailton Sousa'));
+			$this->set('user',$this->Auth->User());
 			$this->set('active','home');
 
 		}else{

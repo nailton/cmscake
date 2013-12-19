@@ -1,13 +1,35 @@
-; This file is for unifying the coding style for different editors and IDEs.
-; More information at http://editorconfig.org
+# editorconfig
 
 root = true
 
+# Pra todos os arquivos
 [*]
 indent_style = tab
+indent_size = 2
 end_of_line = lf
-insert_final_newline = true
+charset = utf-8
 trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Estilo de identação em arquivos HTML
+[*.html]
+indent_style = tab
+indent_size = 2
+
+# Estilo de identação em arquivos PHP
+[*.php]
+indent_style = tab
+indent_size = 2
+
+# Estilo de identação em arquivos CSS
+[*.css]
+indent_style = tab
+indent_size = 2
+
+# Estilo de identação em arquivos JS dentro do diretório Scripts
+[js/*.js]
+indent_style = tab
+indent_size = 2
 
 [*.bat]
 end_of_line = crlf
