@@ -3,9 +3,9 @@
 
 <head>
 
-	<title>CMS Tutorial – Erik Figueiredo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0″>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8″ />
+	<title>CMS Tutorial – Total Interativa</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<?php
 	echo $this->Html->meta('icon');
 
@@ -21,14 +21,14 @@
 	<header id="header">
 		<div class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-inner container-fluid">
-			<?php echo $this->Html->link('CMS Tutorial – Erik Figueiredo','/admin',array('class'=>'brand'));?>
+			<?php echo $this->Html->link('CMS com Cake – Total Interativa','/admin',array('class'=>'brand'));?>
 				<?php echo $this->element('admin/header');?>
 			</div>
 			<?php echo $this->element('admin/menu');?>
 		</div>
 	</header>
 
-	<main> 
+	<main>
 		<article id="content" class="container-fluid">
 <?php if($user) echo $this->Session->flash(); ?>
 <?php echo $this->fetch('content'); ?>
@@ -37,7 +37,7 @@
 	<footer id="footer" class="navbar">
 <div class="navbar-inner container-fluid">
 
-<?php echo $this->Html->link('CMS Tutorial - ','#',array('target' => '_blank', 'class'=>'brand text-center'));?>
+<?php echo $this->Html->link('CMS com Cake - ','http://totalinterativa.com.br',array('target' => '_blank', 'class'=>'brand text-center'));?>
 
 </div>
 	</footer>

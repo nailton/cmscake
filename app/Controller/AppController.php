@@ -35,24 +35,26 @@ class AppController extends Controller {
 		'Form' => array('className' => 'BootstrapForm'),
 		'Paginator' => array('className' => 'BootstrapPaginator'),
 		);
-}
-public function beforeRender(){
-	if(isset($this->request->params['prefix'])){
 
-if($this->request->params['prefix']=='admin') $this->layout='default';
-if($this->request->params['prefix']=='ajax') $this->layout='ajax';
-$this->set('user',array('id'=>1,'nome'=>'Erik'));
-$this->set('active','home');
+	public function beforeRender(){
+		if(isset($this->request->params['prefix'])){
 
-}else{
+			if($this->request->params['prefix']=='admin') $this->layout='default';
+			if($this->request->params['prefix']=='ajax') $this->layout='ajax';
+			// TESTE
+			$this->set('user',array('id'=>1,'nome'=>'Nailton Sousa'));
+			$this->set('active','home');
 
-$this->theme=Configure::read('theme');
+		}else{
 
-}
+			$this->theme=Configure::read('theme');
 
-if($this->request->is('ajax')){
+		}
 
-$this->layout='ajax';
+		if($this->request->is('ajax')){
 
-}
+			$this->layout='ajax';
+
+		}
+	}
 }
