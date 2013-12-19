@@ -34,6 +34,7 @@ class AppController extends Controller {
 		'Html' => array('className' => 'BootstrapHtml'),
 		'Form' => array('className' => 'BootstrapForm'),
 		'Paginator' => array('className' => 'BootstrapPaginator'),
+		'Link' =>array('className' => 'Link'),
 		);
 
 	public $components = array(
@@ -71,6 +72,17 @@ class AppController extends Controller {
 		}else{
 
 			$this->theme=Configure::read('theme');
+			if($this->Auth->User()){
+				$configs['titulo']=$this->Auth->User('titulo');
+			}else{
+				$this->loadModel('Usuario');
+				$user=$this->Usuario->find('first',array(
+					'conditions'=>array('id'=>1),
+					'fields'=>array('titulo')
+					));
+				$configs['titulo']=$user['Usuario']['titulo'];
+			}
+			$this->set('configs',$configs);
 
 		}
 
